@@ -55,6 +55,18 @@ class Validation {
     );
     return validationResponse == true ? true : validationResponse;
   };
+  static validateCustomer = (customerObject) => {
+    const customerObjectSchema = {
+      fullName: { type: "string", optional: false },
+      phoneNum: { type: "string", optional: false },
+    };
+    const validator = new fastestValidator();
+    const validationResponse = validator.validate(
+      customerObject,
+      customerObjectSchema
+    );
+    return validationResponse == true ? true : validationResponse;
+  };
 
   static checkUserExistence = async (userName) => {
     const result = await models.Users.findOne({
