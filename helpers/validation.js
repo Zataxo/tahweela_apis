@@ -59,11 +59,39 @@ class Validation {
     const customerObjectSchema = {
       fullName: { type: "string", optional: false },
       phoneNum: { type: "string", optional: false },
+      userId: { type: "number", optional: false },
     };
     const validator = new fastestValidator();
     const validationResponse = validator.validate(
       customerObject,
       customerObjectSchema
+    );
+    return validationResponse == true ? true : validationResponse;
+  };
+  static validateOfficeAccounts = (officeAccountsObject) => {
+    const officeAccountsObjectSchema = {
+      currencyId: { type: "number", optional: false },
+      currentAmount: { type: "number", optional: false },
+      officeFee: { type: "number", optional: false },
+      userId: { type: "number", optional: false },
+    };
+    const validator = new fastestValidator();
+    const validationResponse = validator.validate(
+      officeAccountsObject,
+      officeAccountsObjectSchema
+    );
+    return validationResponse == true ? true : validationResponse;
+  };
+  static validateCustomerAccounts = (customerAccountObject) => {
+    const customerAccountObjectSchema = {
+      officeAccountId: { type: "number", optional: false },
+      customerId: { type: "number", optional: false },
+      userId: { type: "number", optional: false },
+    };
+    const validator = new fastestValidator();
+    const validationResponse = validator.validate(
+      customerAccountObject,
+      customerAccountObjectSchema
     );
     return validationResponse == true ? true : validationResponse;
   };

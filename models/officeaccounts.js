@@ -9,17 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      OfficeAccounts.hasOne(models.Currencies);
+      // OfficeAccounts.hasOne(models.Currencies, {
+      //   foreignKey: "id",
+      // });
       OfficeAccounts.belongsToMany(models.Customers, {
-        through: "CustomersAccounts",
+        through: "CustomerAccounts",
+        foreignKey: "officeAccountId",
+        otherKey: "customerId",
       });
     }
   }
   OfficeAccounts.init(
     {
       currencyId: DataTypes.INTEGER,
-      currentAmount: DataTypes.FLOAT,
+      currentAmount: DataTypes.INTEGER,
       officeFee: DataTypes.FLOAT,
+      userId: DataTypes.INTEGER,
     },
     {
       sequelize,
