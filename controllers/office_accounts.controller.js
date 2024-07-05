@@ -22,10 +22,7 @@ class OfficeAccountsController {
     }
     models.OfficeAccounts.findAll({
       where: { userId: req.params.userId },
-      include: [
-        // models.Currencies,
-        models.Customers,
-      ],
+      include: [models.Currencies, models.Customers],
     }).then((result) => {
       if (result.length === 0) {
         res.status(404).json(result);

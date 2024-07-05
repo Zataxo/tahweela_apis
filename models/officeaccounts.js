@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // OfficeAccounts.hasOne(models.Currencies, {
-      //   foreignKey: "id",
-      // });
+      OfficeAccounts.hasOne(models.Currencies, {
+        foreignKey: "id",
+      });
       OfficeAccounts.belongsToMany(models.Customers, {
         through: "CustomerAccounts",
         foreignKey: "officeAccountId",

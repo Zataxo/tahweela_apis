@@ -95,6 +95,21 @@ class Validation {
     );
     return validationResponse == true ? true : validationResponse;
   };
+  static validateReminder = (reminderObject) => {
+    const reminderObjectSchema = {
+      reminderTitle: { type: "string", optional: false },
+      memo: { type: "string", optional: false },
+      date: { type: "string", optional: false },
+      isRange: { type: "boolean", optional: false },
+      userId: { type: "number", optional: false },
+    };
+    const validator = new fastestValidator();
+    const validationResponse = validator.validate(
+      reminderObject,
+      reminderObjectSchema
+    );
+    return validationResponse == true ? true : validationResponse;
+  };
 
   static checkUserExistence = async (userName) => {
     const result = await models.Users.findOne({
